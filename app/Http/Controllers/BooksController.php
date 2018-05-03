@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Book;
 use App\Author;
+use Session;
 
 class BooksController extends Controller
 {
@@ -27,7 +28,8 @@ class BooksController extends Controller
      */
     public function create()
     {
-        
+        $authors = Author::all();
+        return view('books.create', compact('authors'));
     }
 
     /**
@@ -38,7 +40,16 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+
+        $books = Book::all();
+
+        Session::flash("flash_notification", [
+            "level" => "success",
+            "message" => "Berhasill Menyimpan Buku"
+        ]);
+
+        return redirect()->route('books.index');
     }
 
     /**
