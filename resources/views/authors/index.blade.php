@@ -9,10 +9,10 @@
         </ol>
     </nav>
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-md-10">
             <div class="card">
                 <div class="card-header">Penulis
-                    <a class="btn btn-primary float-right" href="">Tambah</a>
+                    <a class="btn btn-primary float-right" href="{{ route('authors.create') }}">Tambah</a>
                 </div>
 
                 <div class="card-body">
