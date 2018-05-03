@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Author;
+use App\Http\Requests;
 
 class AuthorsController extends Controller
 {
@@ -25,7 +26,7 @@ class AuthorsController extends Controller
      */
     public function create()
     {
-        //
+        return view('authors.create');
     }
 
     /**
@@ -36,7 +37,10 @@ class AuthorsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $author = Author::create($request->all());
+
+        return redirect()->route('authors.index');
     }
 
     /**
