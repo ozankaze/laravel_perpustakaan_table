@@ -35,7 +35,7 @@
                                             @method('DELETE')
 
                                             <a href="{{ route('authors.edit', $author->id) }}" class="btn btn-warning">EDIT</a>
-                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                            <button onclick="return confirm('Yakin Anda Mau Menghapus {{ $author->name }} ?')" type="submit" class="btn btn-danger">Hapus</button>
                                         </form>
                                     </td>
                                 </tr>
