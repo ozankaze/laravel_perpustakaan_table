@@ -99,6 +99,13 @@ class AuthorsController extends Controller
      */
     public function destroy(Author $author)
     {
+        $author->delete();
         
+        Session::flash("flash_notification", [
+            "level" => "success",
+            "message" => "Berhasill Menghapus Penulis <strong>$author->name</strong>"
+        ]);
+
+        return redirect()->route('authors.index');
     }
 }

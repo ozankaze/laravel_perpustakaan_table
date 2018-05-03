@@ -20,6 +20,7 @@
                         <thead>
                             <tr>
                                 <th>Penulis</th>
+                                <th></th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -28,6 +29,15 @@
                                 <tr>
                                     <td>{{ $author->name }}</td>
                                     <td></td>
+                                    <td>
+                                        <form action="{{ route('authors.destroy', $author->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <a href="{{ route('authors.edit', $author->id) }}" class="btn btn-warning">EDIT</a>
+                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
