@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Author;
 use App\Http\Requests\AuthorRequest;
+use Session;
 
 class AuthorsController extends Controller
 {
@@ -39,6 +40,11 @@ class AuthorsController extends Controller
     {
         // dd($request);
         $author = Author::create($request->all());
+
+        Session::flash("flash_notification", [
+            "level" => "success",
+            "message" => "Berhasill Menyimpan Buku <strong>$author->name</strong>"
+        ]);
 
         return redirect()->route('authors.index');
     }
