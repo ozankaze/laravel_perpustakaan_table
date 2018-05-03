@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Book;
 use App\Author;
 use Session;
+use App\Http\Requests\BookRequest;
 
 class BooksController extends Controller
 {
@@ -38,7 +39,7 @@ class BooksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BookRequest $request)
     {
         // dd($request);
 

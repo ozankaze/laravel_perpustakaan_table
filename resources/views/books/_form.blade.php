@@ -3,9 +3,9 @@
     <div class="col-md-4">
         <input type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" id="title"
         name="title" autofocus>
-        @if ($errors->has('name'))
+        @if ($errors->has('title'))
             <span class="invalid-feedback">
-            <strong>{{ $errors->first('name') }}</strong>
+            <strong>{{ $errors->first('title') }}</strong>
             </span>
         @endif
     </div>
@@ -14,9 +14,6 @@
 <div class="form-group">
     <label for="author_id" class="col-md-2 control-label">Penulis</label>
     <div class="col-md-4">
-        {{-- <input type="text" class="form-control{{ $errors->has('author_id') ? ' is-invalid' : '' }}" id="author_id"
-        name="author_id" autofocus> --}}
-
         <select class="form-control{{ $errors->has('author_id') ? ' is-invalid' : '' }}" id="author_id" 
             name="author_id">
             <option value="">Pilih Penulis</option>
