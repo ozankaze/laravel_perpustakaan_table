@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Author;
-use App\Http\Requests;
+use App\Http\Requests\AuthorRequest;
 
 class AuthorsController extends Controller
 {
@@ -35,7 +35,7 @@ class AuthorsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AuthorRequest $request)
     {
         // dd($request);
         $author = Author::create($request->all());

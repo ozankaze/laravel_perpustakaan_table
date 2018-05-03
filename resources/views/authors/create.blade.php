@@ -22,7 +22,7 @@
                             <label for="name" class="col-md-2 control-label">Nama</label>
                             <div class="col-md-4">
                                 <input type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" id="name"
-                                name="name" autofocus><br>
+                                name="name" autofocus>
                                 @if ($errors->has('name'))
                                   <span class="invalid-feedback">
                                     <strong>{{ $errors->first('name') }}</strong>
