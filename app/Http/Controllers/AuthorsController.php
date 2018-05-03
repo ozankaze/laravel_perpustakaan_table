@@ -66,9 +66,9 @@ class AuthorsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Author $author)
     {
-        //
+        return view('authors.edit', compact('author'));
     }
 
     /**
@@ -78,9 +78,17 @@ class AuthorsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AuthorRequest $request,Author $author)
     {
-        //
+        // dd($author($request->all()));
+        $author->update($request->all());
+
+        Session::flash("flash_notification", [
+            "level" => "success",
+            "message" => "Berhasill Mengupdate Penulis <strong>$author->name</strong>"
+        ]);
+
+        return redirect()->route('authors.index');
     }
 
     /**
@@ -89,8 +97,8 @@ class AuthorsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Author $author)
     {
-        //
+        
     }
 }
