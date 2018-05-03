@@ -105,7 +105,7 @@ class AuthorsController extends Controller
         
 
         Session::flash("flash_notification", [
-            "level" => "success",
+            "level" => "danger",
             "message" => "Berhasill Menghapus Penulis <strong>$author->name</strong>"
         ]);
 
