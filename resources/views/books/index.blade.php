@@ -19,6 +19,7 @@
                     <table class="table">
                         <thead>
                             <tr>
+                                <th>#</th>
                                 <th>Title</th>
                                 <th>Author</th>
                                 <th>Amount</th>
@@ -29,6 +30,7 @@
                         <tbody>
                             @foreach($books as $book)
                                 <tr>
+                                    <td>{{ $book->id }}</td>
                                     <td>{{ $book->title }}</td>
                                     <td>{{ $book->author->name }}</td>
                                     <td>{{ $book->amount }}</td>
