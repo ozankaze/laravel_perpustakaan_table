@@ -43,7 +43,28 @@ class BooksController extends Controller
     {
         // dd($request);
 
-        $books = Book::all();
+        $book = Book::create($request->except('cover'));
+
+        // cek jika upload gambar
+        if ($request->hasFile('cover')) {
+            // ambil file yang di upload
+            $uploaded_image = $request->file('cover');
+  
+            // mengambil extention file
+            $extension = $uploaded_image->getClientOriginalExtension();
+  
+            // membuat nama file scara acak, untuk menghindari duplikasi nama gambar
+            $filename = md5(time()) . '.' . $extension;
+  
+            // simpan gambar ke folder public/Cover
+            $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'img';
+  
+            $uploaded_image->move($destinationPath, $filename);
+  
+            // simpan file kedalam database
+            $book->cover = $filename;
+            $book->save();
+        }
 
         Session::flash("flash_notification", [
             "level" => "success",

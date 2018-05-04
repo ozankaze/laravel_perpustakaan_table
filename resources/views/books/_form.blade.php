@@ -2,7 +2,7 @@
     <label for="title" class="col-md-2 control-label">Nama</label>
     <div class="col-md-4">
         <input type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" id="title"
-        name="title" autofocus>
+        name="title" value="{{ old('title') }}" autofocus>
         @if ($errors->has('title'))
             <span class="invalid-feedback">
             <strong>{{ $errors->first('title') }}</strong>
@@ -44,15 +44,15 @@
 </div>
 
 <div class="form-group">
-    <label for="name" class="col-md-2 control-label">Cover</label>
+    <label for="cover" class="col-md-2 control-label">Cover</label>
     <div class="col-md-4">
-        <input type="file" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" id="name"
+        <input type="file" class="form-control{{ $errors->has('cover') ? ' is-invalid' : '' }}" id="cover"
         name="cover" autofocus>
-        @if ($errors->has('cover'))
+        {{-- @if ($errors->has('cover'))
             <span class="invalid-feedback">
             <strong>{{ $errors->first('cover') }}</strong>
             </span>
-        @endif
+        @endif --}}
     </div>
 </div>
 

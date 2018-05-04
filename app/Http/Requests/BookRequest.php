@@ -24,23 +24,23 @@ class BookRequest extends FormRequest
     public function rules()
     {
         switch ($this->method()) {
-            case 'POST':
-                return [
-                    'title' => 'required|unique:books,title',
-                    'author_id' => 'required|exists:authors,id',
-                    'amount' => 'required|numeric',
-                    'cover' => 'image|max:2048'
-                ];
-                break;
+          case 'POST':
+            return [
+              'title' => 'required|unique:books,title',
+              'author_id' => 'required|exists:authors,id',
+              'amount' => 'required|numeric',
+              'cover' => 'image|max:2048',
+            ];
+            break;
 
-            case 'PATCH':
-            case 'PUT':
-                return [
-                    'title' => 'required|unique:books,title',
-                    'author_id' => 'required|exists:authors,id',
-                    'amount' => 'required|numeric',
-                    'cover' => 'image|max:2048'
-                ];
+          case 'PATCH':
+          case 'PUT':
+            return [
+              'title' => 'required|unique:books,title,' . $this->route('book.id'),
+              'author_id' => 'required|exists:authors,id',
+              'amount' => 'required|numeric',
+              'cover' => 'image|max:2048',
+            ];
             break;
         }
     }
