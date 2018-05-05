@@ -19,6 +19,7 @@
                     <table class="table">
                         <thead>
                             <tr>
+                                <th>#</th>
                                 <th>Penulis</th>
                                 <th></th>
                                 <th>Action</th>
@@ -27,6 +28,7 @@
                         <tbody>
                             @foreach($authors as $author)
                                 <tr>
+                                    <td>{{ $author->id }}</td>
                                     <td>{{ $author->name }}</td>
                                     <td></td>
                                     <td>
@@ -42,6 +44,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {!! $authors->render() !!}
                 </div>
             </div>
         </div>

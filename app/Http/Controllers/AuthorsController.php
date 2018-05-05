@@ -9,6 +9,13 @@ use Session;
 
 class AuthorsController extends Controller
 {
+    private $author; 
+
+    public function __construct(Author $author)
+    {
+        $this->author = $author;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +23,10 @@ class AuthorsController extends Controller
      */
     public function index()
     {
-        $authors = Author::all();
+        // $authors = Author::all();
+        // $authors = Author::all()->orderBy('id', 'DESC')->paginate(5);
+        $authors = $this->author->orderBy('id', 'DESC')->paginate(5);
+
         return view('authors.index', compact('authors'));
     }
 
