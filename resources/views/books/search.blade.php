@@ -41,7 +41,7 @@
                                     <td>{{ $book->amount }}</td>
                                     <td></td>
                                     <td>
-                                        <form action="" method="post">
+                                        <form action="{{ route('books.destroy', $book->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
 

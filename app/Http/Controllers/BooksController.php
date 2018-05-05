@@ -7,6 +7,7 @@ use App\Book;
 use App\Author;
 use Session;
 use App\Http\Requests\BookRequest;
+use Illuminate\Support\Facades\File;
 
 class BooksController extends Controller
 {
@@ -140,7 +141,30 @@ class BooksController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $book = Book::findOrFail($id);
+
+        // dd($book);
+        // hapus cover lama, jika ada
+        if ($book->cover) {
+            $old_cover = $book->cover;
+            $filepath = public_path() . DIRECTORY_SEPARATOR . 'img'
+            . DIRECTORY_SEPARATOR . $book->cover;
+            
+            try {
+                File::delete($filepath);
+            } catch (FileNotFoundException $e) {
+                // File sudah dihapus/tidak ada
+            }
+        }
+
+        $book->delete();
+
+        Session::flash("flash_notification", [
+            "level"=>"success",
+            "message"=>"Buku berhasil dihapus <strong>$book->title</strong>"
+        ]);
+
+        return redirect()->route('books.index');
     }
 
     public function search(Request $request)
