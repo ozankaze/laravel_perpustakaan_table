@@ -40,7 +40,7 @@
                                             @csrf
                                             @method('DELETE')
 
-                                            <a href="" class="btn btn-warning">EDIT</a>
+                                            <a href="{{ route('books.edit', $book->id) }}" class="btn btn-warning">EDIT</a>
                                             <button onclick="return confirm('Yakin Anda Mau Menghapus {{ $book->title }} ?')" type="submit" class="btn btn-danger">Hapus</button>
                                         </form>
                                     </td>

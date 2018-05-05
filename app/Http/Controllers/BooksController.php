@@ -91,9 +91,17 @@ class BooksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Book $book)
     {
-        //
+
+        // cara pertama
+        $authors = Author::all();
+        return view('books.edit', compact('book', 'authors'));
+
+        // cara kedua
+        /* $book = Book::findOrFail($id);
+        $authors = Author::all();
+        return view('books.create', compact('authors', 'book')); */
     }
 
     /**
@@ -105,7 +113,17 @@ class BooksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request);
+        $book = Book::findOrFail($id);
+        $book->update($request->all());
+
+        Session::flash("flash_notification", [
+            "level" => "success",
+            "message" => "Berhasill Mengupdate Buku <strong>$book->title</strong>"
+        ]);
+
+        return redirect()->route('books.index');
+
     }
 
     /**
