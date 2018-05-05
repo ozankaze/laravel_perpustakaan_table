@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Author;
 use App\Http\Requests\AuthorRequest;
 use Session;
+use Laravel\Scout\Searchable;
 
 class AuthorsController extends Controller
 {
@@ -121,4 +122,16 @@ class AuthorsController extends Controller
 
         return redirect()->route('authors.index');
     }
+
+    public function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        $authors = $this->author->where('name', 'like', "%$keyword%") // pake kutip dua biar bisa baca pakai variable
+            ->orderBy('id', 'DESC')->paginate(10);
+        $authors->appends(['keyword' => $keyword]); // bwat  nargeting pag  ke hal 2
+
+        return view('authors.search', compact('authors'));
+    }
+
 }
