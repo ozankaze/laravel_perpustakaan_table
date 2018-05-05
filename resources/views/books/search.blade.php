@@ -5,7 +5,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('home') }}">Beranda</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Buku</li>
+            <li class="breadcrumb-item"><a href="{{ route('books.index') }}">Buku</a></li>
         </ol>
     </nav>
     <div class="row justify-content-center">

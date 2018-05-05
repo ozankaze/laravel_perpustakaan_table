@@ -128,7 +128,7 @@ class AuthorsController extends Controller
         $keyword = $request->input('keyword');
 
         $authors = $this->author->where('name', 'like', "%$keyword%") // pake kutip dua biar bisa baca pakai variable
-            ->orderBy('id', 'DESC')->paginate(10);
+            ->orderBy('id', 'DESC')->paginate(5);
         $authors->appends(['keyword' => $keyword]); // bwat  nargeting pag  ke hal 2
 
         return view('authors.search', compact('authors'));
