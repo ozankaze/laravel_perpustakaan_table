@@ -8,6 +8,9 @@ use App\Author;
 use Session;
 use App\Http\Requests\BookRequest;
 use Illuminate\Support\Facades\File;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\BorrowLog;
+use Illuminate\Support\Facades\Auth;
 
 class BooksController extends Controller
 {
@@ -16,6 +19,7 @@ class BooksController extends Controller
     public function __construct(Book $book)
     {
         $this->book = $book;
+        $this->middleware(['auth', 'role:member'])->only(['borrow']);
     }
     /**
      * Display a listing of the resource.
@@ -176,5 +180,27 @@ class BooksController extends Controller
         $books->appends(['keyword' => $keyword]); // bwat  nargeting pag  ke hal 2
 
         return view('books.search', compact('books'));
+    }
+
+    public function borrow($id) 
+    {
+      try {
+        $book = Book::findOrFail($id);
+            BorrowLog::create([
+            'user_id' => Auth::user()->id,
+            'book_id' => $id
+        ]);
+        Session::flash('flash_notification', [
+          'level' => 'success',
+          'message' => "Berhasil Meminjam buku <strong>$book->title</strong>"
+        ]);
+      } catch (ModelNotFoundException $e) {
+        Session::flash('flash_notification', [
+          'level' => 'danger',
+          'message' => "Buku Tidak Di Temukan"
+        ]);
+      }
+
+      return redirect('/');
     }
 }

@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'GuestController@index')->name('/');
+Route::get('/search', 'GuestController@search')->name('guest.search');
+Route::get('books/{book}/borrow', 'BooksController@borrow')->name('guest.books.borrow');
 
 Auth::routes();
 
