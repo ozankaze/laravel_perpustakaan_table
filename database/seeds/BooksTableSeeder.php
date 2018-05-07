@@ -3,6 +3,8 @@
 use Illuminate\Database\Seeder;
 use App\Author;
 use App\Book;
+use App\BorrowLog;
+use App\User;
 
 class BooksTableSeeder extends Seeder
 {
@@ -47,6 +49,26 @@ class BooksTableSeeder extends Seeder
             'title' => 'Shingeki No kyojin',
             'amount' => '1',
             'author_id' => $author3->id,
+        ]);
+
+        // sample meminjam buku 
+        $member = User::where('email', 'member@main.com')->first();
+        BorrowLog::create([
+            'user_id' => $member->id,
+            'book_id' => $book1->id,
+            'is_returned' => 0
+        ]);
+
+        BorrowLog::create([
+            'user_id' => $member->id,
+            'book_id' => $book2->id,
+            'is_returned' => 0
+        ]);
+
+        BorrowLog::create([
+            'user_id' => $member->id,
+            'book_id' => $book3->id,
+            'is_returned' => 1
         ]);
 
 
