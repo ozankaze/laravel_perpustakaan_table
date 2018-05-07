@@ -29,11 +29,16 @@ class BorrowLog extends Model
 
     public function scopeReturned($query)
     {
-        return $query->whereIsReturned(1);
+        // return $query->whereIsReturned(1);
+        return $query->where('is_returned', 1);
+        /* returned() untuk mendapatkan data
+peminjaman yang sudah dikembalikan */
     }
 
     public function scopeBorrowed($query)
     {
         return $query->where('is_returned', 0);
+        /* borrowed() untuk mendaptkan data
+peminjaman yang belum dikembalikan */
     }
 }
