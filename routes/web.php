@@ -13,7 +13,9 @@
 
 Route::get('/', 'GuestController@index')->name('/');
 Route::get('/search', 'GuestController@search')->name('guest.search');
+// Pinjam Buku
 Route::get('books/{book}/borrow', 'BooksController@borrow')->name('guest.books.borrow');
+Route::patch('books/{book}/return', 'BooksController@return')->name('member.books.borrow');
 
 Auth::routes();
 

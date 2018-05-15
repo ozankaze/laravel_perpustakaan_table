@@ -20,7 +20,8 @@ class BooksController extends Controller
     public function __construct(Book $book)
     {
         $this->book = $book;
-        $this->middleware(['auth', 'role:member'])->only(['borrow']);
+        $this->middleware(['auth', 'role:member'])->only(['borrow',]);
+        $this->middleware(['auth', 'role:member'])->only(['return']);
     }
     /**
      * Display a listing of the resource.
@@ -210,5 +211,25 @@ class BooksController extends Controller
       }
 
       return redirect('/');
+    }
+
+    public function return(Book $book)
+    {
+        $borrowLog = BorrowLog::where('user_id', auth()->user()->id)
+        ->where('book_id', $book->id)
+        ->where('is_returned', 0)
+        ->first();
+
+        if ($borrowLog) {
+            $borrowLog->is_returned = 1;
+            $borrowLog->save();
+
+            Session::flash('flash_notification', [
+                'level' => 'success',
+                'message' => 'Berhasil Mengembalikan' . $borrowLog->book->title
+            ]);
+        }
+
+        return redirect('/home');
     }
 }

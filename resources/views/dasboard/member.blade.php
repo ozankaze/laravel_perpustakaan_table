@@ -27,7 +27,14 @@
                                         @endif
                                         <ul>
                                             @foreach ($borrowLogs as $borrowLog)
-                                            <li>{{ $borrowLog->book->title }}</li>
+                                                <form class="form-horizontal" action="{{ route('member.books.borrow', $borrowLog->book->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('PATCH')
+
+                                                    {{ $borrowLog->book->title }}
+
+                                                    <button type="submit" class="btn btn-primary ml-2 mb-1">Kembalikan</button>
+                                                </form>
                                             @endforeach
                                         </ul>
                                     </td>
