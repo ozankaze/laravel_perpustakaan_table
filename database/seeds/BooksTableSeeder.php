@@ -47,7 +47,7 @@ class BooksTableSeeder extends Seeder
 
         $book3 = Book::create([
             'title' => 'Shingeki No kyojin',
-            'amount' => '1',
+            'amount' => '0',
             'author_id' => $author3->id,
         ]);
 
