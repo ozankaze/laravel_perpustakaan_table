@@ -66,6 +66,9 @@
                                     <strong>{{ $errors->first('amount') }}</strong>
                                     </span>
                                 @endif
+                                @if (isset($book))
+                                    <p class="help-block">{{ $book->borrowed }} buku sedang dipinjam</p>
+                                @endif
                             </div>
                         </div>
                         

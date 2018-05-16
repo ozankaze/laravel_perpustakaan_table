@@ -128,7 +128,8 @@ class BooksController extends Controller
     {
         // dd($request);
         $book = Book::findOrFail($id);
-        $book->update($request->all());
+        // $book->update($request->all());
+        if(!$book->update($request->all())) return redirect()->back();
 
         Session::flash("flash_notification", [
             "level" => "success",
