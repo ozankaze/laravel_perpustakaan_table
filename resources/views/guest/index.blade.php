@@ -24,6 +24,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Title</th>
+                                <th>Stock</th>
                                 <th>Author</th>
                                 <th></th>
                                 <th>Action</th>
@@ -34,6 +35,7 @@
                                 <tr>
                                     <td>{{ $book->id }}</td>
                                     <td>{{ $book->title }}</td>
+                                    <td>{{ $book->amount }}</td>
                                     <td>{{ $book->author->name }}</td>
                                     <td></td>
                                     <td>
