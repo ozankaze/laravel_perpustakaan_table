@@ -149,10 +149,14 @@ class BooksController extends Controller
     public function destroy($id)
     {
         $book = Book::findOrFail($id);
-
+        $cover = $book->cover;
+        if (!$book->delete()) {
+            return redirect()->back();
+        }
         // dd($book);
         // hapus cover lama, jika ada
-        if ($book->cover) {
+        // if ($book->cover) {
+        if ($cover) {
             $old_cover = $book->cover;
             $filepath = public_path() . DIRECTORY_SEPARATOR . 'img'
             . DIRECTORY_SEPARATOR . $book->cover;
@@ -164,7 +168,7 @@ class BooksController extends Controller
             }
         }
 
-        $book->delete();
+        // $book->delete();
 
         Session::flash("flash_notification", [
             "level"=>"success",
