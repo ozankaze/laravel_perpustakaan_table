@@ -204,8 +204,7 @@ class BooksController extends Controller
         ]);
       } catch (BookException $e) {
         Session::flash("flash_notification", [
-        "level"
-        => "danger",
+        "level" => "danger",
         "message" => $e->getMessage()
         ]);
       } catch (ModelNotFoundException $e) {
