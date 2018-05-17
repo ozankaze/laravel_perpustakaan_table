@@ -20,7 +20,7 @@ class BooksController extends Controller
     public function __construct(Book $book)
     {
         $this->book = $book;
-        $this->middleware(['auth', 'role:member'])->only(['borrow',]);
+        $this->middleware(['auth', 'role:member'])->only(['borrow']);
         $this->middleware(['auth', 'role:member'])->only(['return']);
     }
     /**
