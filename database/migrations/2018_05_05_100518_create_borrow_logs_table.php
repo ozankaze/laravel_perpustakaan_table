@@ -15,13 +15,13 @@ class CreateBorrowLogsTable extends Migration
     {
         Schema::create('borrow_logs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('book_id')->unsigned()->index();
+            $table->integer('book_id')->unsigned()->index(); // untuk mencatat id dari buku yang dipinjam
             $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade')->onUpdate('cascade');
             
-            $table->integer('user_id')->unsigned()->index();
+            $table->integer('user_id')->unsigned()->index(); // untuk mencatat id dari user yang meminjam buku
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             
-            $table->boolean('is_returned')->default(false);
+            $table->boolean('is_returned')->default(false); // memcatat buku sufah di kembalikan / belum
             $table->timestamps();
         });
     }
