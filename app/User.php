@@ -39,6 +39,7 @@ class User extends Authenticatable
             throw new BookException("Buku $book->title sedang tidak tersedia.");
         }
 
+        // cek apakah buku ini sedang dipinjam oleh user
         if ($this->borrowLogs()->where('book_id', $book->id)->where('is_returned', 0)->count() > 0)
         {
             throw new BookException("Buku $book->title Sedang Anda Pinjam");
