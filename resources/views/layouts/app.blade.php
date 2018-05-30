@@ -37,6 +37,7 @@
                     <ul class="navbar-nav mr-auto">
                         @if (Auth::check())
                             <li><a class="nav-link" href="{{ url('/home') }}">Dashboard</a></li>
+                            <li><a class="nav-link" href="{{ url('/settings/profile') }}">Profile</a></li>
                         @endif
                         @role('admin')
                             <li><a class="nav-link" href="{{ route('authors.index') }}">Penulis</a></li>
