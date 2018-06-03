@@ -18,6 +18,10 @@ Route::get('books/{book}/borrow', 'BooksController@borrow')->name('guest.books.b
 Route::patch('books/{book}/return', 'BooksController@return')->name('member.books.borrow');
 // Membuat Halaman Profile
 Route::get('settings/profile', 'SettingsController@profile');
+// Mengubah Data Profile
+Route::get('settings/profile/edit', 'SettingsController@editProfile');
+Route::post('setting/profile', 'SettingsController@updateProfile')->name('profile.update');
+
 
 Auth::routes();
 
